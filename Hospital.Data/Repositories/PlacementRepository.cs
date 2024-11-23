@@ -33,7 +33,7 @@ namespace Hospital.Data.Repositories
             return placement;
         }
 
-        public Placement UpdateSinglePlacement(int id, Placement placement)
+        public Placement? UpdateSinglePlacement(int id, Placement placement)
         {
             var p = _context.Placements.Find(id);
 
@@ -54,8 +54,12 @@ namespace Hospital.Data.Repositories
         public void DeleteSinglePlacement(int id)
         {
             var p = _context.Placements.Find(id);
-            _context.Placements.Remove(p);
-            _context.SaveChanges();
+
+            if (p != null)
+            {
+                _context.Placements.Remove(p);
+                _context.SaveChanges();
+            }
         }
 
     }
