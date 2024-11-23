@@ -25,30 +25,30 @@ namespace Hospital.Controllers
 
         // GET api/<PlacementController>/5
         [HttpGet("{id}")]
-        public ActionResult Get(string idWorker)
+        public ActionResult Get(int id)
         {
-            return Ok(_placementService.GetPlacementById(idWorker));
+            return Ok(_placementService.GetPlacementById(id));
         }
 
         // POST api/<PlacementController>
         [HttpPost]
         public ActionResult Post([FromBody] Placement placement)
         {
-            return Ok(_placementService.addPlacement(placement));
+            return Ok(_placementService.AddPlacement(placement));
         }
 
         // PUT api/<PlacementController>/5
         [HttpPut("{id}")]
-        public ActionResult Put(string idWorker, [FromBody] Placement placement)
+        public ActionResult Put(int id, [FromBody] Placement placement)
         {
-            return Ok(_placementService.updatePlacement(idWorker, placement));
+            return Ok(_placementService.UpdatePlacement(id, placement));
         }
 
         // DELETE api/<PlacementController>/5
         [HttpDelete("{id}")]
-        public ActionResult Delete(string idWorker)
+        public ActionResult Delete(int id)
         {
-            _placementService.deletePlacement(idWorker);
+            _placementService.DeletePlacement(id);
             return Ok();
         }
     }

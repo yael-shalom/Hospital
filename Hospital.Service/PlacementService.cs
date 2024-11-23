@@ -22,24 +22,24 @@ namespace Hospital.Service
             return _PlacementRepository.GetAllPlacements();
         }
 
-        public Placement addPlacement(Placement placement)
+        public Placement AddPlacement(Placement placement)
         {
-            return _PlacementRepository.addSinglePlacement(placement);
+            return _PlacementRepository.AddSinglePlacement(placement);
         }
 
-        public void deletePlacement(string id)
+        public void DeletePlacement(int id)
         {
-            _PlacementRepository.deleteSinglePlacement(id);
+            _PlacementRepository.DeleteSinglePlacement(id);
         }
 
-        public List<Placement> GetPlacementById(string id)
+        public Placement? GetPlacementById(int id)
         {
             return _PlacementRepository.GetSinglePlacement(id);
         }
 
-        public Placement updatePlacement(string id, Placement placement)
+        public Placement UpdatePlacement(int id, Placement placement)
         {
-            return _PlacementRepository.updateSinglePlacement(id, placement);
+            return _PlacementRepository.UpdateSinglePlacement(id, placement);
         }
     }
 }

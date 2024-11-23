@@ -15,35 +15,42 @@ namespace Hospital.Data.Repositories
         {
             _context = context;
         }
+
         public Worker AddSingleWorker(Worker worker)
         {
-
             _context.Workers.Add(worker);
+            _context.SaveChanges();
             return worker;
         }
 
         public void DeleteSingleWorker(string id)
         {
-            int index = _context.Workers.FindIndex(w => w.Id.Equals(id));
-            _context.Workers.Remove(_context.Workers[index]);
+            var w = _context.Workers.Find(id);
+            _context.Workers.Remove(w);
+            _context.SaveChanges();
         }
 
         public List<Worker> GetAllWorkers()
         {
-            return _context.Workers;
+            return _context.Workers.ToList();
         }
 
         public Worker GetSingleWorker(string id)
         {
-            return (Worker)_context.Workers.Where(w => w.Id.Equals(id));
+            return _context.Workers.Find(id);
         }
 
         public Worker UpdateSingleWorker(string id, Worker worker)
         {
-            int index = _context.Workers.FindIndex(w => w.Id.Equals(id));
-            _context.Workers[index].Name = worker.Name;
-            _context.Workers[index].Role = worker.Role;
-            return _context.Workers[index];
+            var w = _context.Workers.Find(id);
+            if (w != null)
+            {
+                w.Name = worker.Name;
+                w.Role = worker.Role;
+
+                _context.SaveChanges();
+            }
+            return w;
         }
     }
 }

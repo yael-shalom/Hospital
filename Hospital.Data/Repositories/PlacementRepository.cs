@@ -10,42 +10,52 @@ namespace Hospital.Data.Repositories
     public class PlacementRepository : IPlacementRepository
     {
         private readonly DataContext _context;
-        public PlacementRepository(DataContext context) 
-        { 
-            _context = context; 
+
+        public PlacementRepository(DataContext context)
+        {
+            _context = context;
         }
 
         public List<Placement> GetAllPlacements()
         {
-            return _context.Placements;
+            return _context.Placements.ToList();
         }
 
-        public List<Placement> GetSinglePlacement(string id)
+        public Placement? GetSinglePlacement(int id)
         {
-            return _context.Placements.FindAll(p => p.IdWorker.Equals(id));
+            return _context.Placements.Find(id);
         }
-        
-        public Placement addSinglePlacement(Placement placement)
+
+        public Placement AddSinglePlacement(Placement placement)
         {
             _context.Placements.Add(placement);
+            _context.SaveChanges();
             return placement;
         }
 
-        public Placement updateSinglePlacement(string id, Placement placement)
+        public Placement UpdateSinglePlacement(int id, Placement placement)
         {
-            int index = _context.Placements.FindIndex(p => p.IdWorker.Equals(id));
-            _context.Placements[index].Day = placement.Day;
-            _context.Placements[index].Morning = placement.Morning;
-            _context.Placements[index].Evening = placement.Evening;
-            _context.Placements[index].Night = placement.Night;
-            _context.Placements[index].Idward = placement.Idward;
-            return _context.Placements[index];
+            var p = _context.Placements.Find(id);
+
+            if (p != null)
+            {
+                p.Day = placement.Day;
+                p.Morning = placement.Morning;
+                p.Evening = placement.Evening;
+                p.Night = placement.Night;
+                p.WardId = placement.WardId;
+                p.WorkerId = placement.WorkerId;
+
+                _context.SaveChanges();
+            }
+            return p;
         }
 
-        public void deleteSinglePlacement(string id)
+        public void DeleteSinglePlacement(int id)
         {
-            int index = _context.Placements.FindIndex(w => w.IdWorker.Equals(id));
-            _context.Placements.Remove(_context.Placements[index]);
+            var p = _context.Placements.Find(id);
+            _context.Placements.Remove(p);
+            _context.SaveChanges();
         }
 
     }

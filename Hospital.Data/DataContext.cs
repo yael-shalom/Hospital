@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,28 +7,15 @@ using System.Threading.Tasks;
 
 namespace Hospital.Data
 {
-    public class DataContext
+    public class DataContext:DbContext
     {
-        public List<Placement> Placements { get; set; }
-        public List<Ward> Wards { get; set; }
-        public List<Worker> Workers { get; set; }
+        public DbSet<Placement> Placements { get; set; }
+        public DbSet<Ward> Wards { get; set; }
+        public DbSet<Worker> Workers { get; set; }
 
-        public DataContext() 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            Placements = new List<Placement> 
-            {
-                new Placement{}
-            };
-
-            Wards = new List<Ward>
-            {
-                new Ward{}
-            };
-
-            Workers = new List<Worker>
-            { 
-                new Worker{}
-            };
+            optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=HospitalDB");
         }
     }
 }

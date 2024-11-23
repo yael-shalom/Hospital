@@ -18,30 +18,32 @@ namespace Hospital.Data.Repositories
 
         public Ward AddSingleWard(Ward ward)
         {
-            if (_context.Wards.Count == 0)
-                ward.Id = 1;
-            else
-                ward.Id = _context.Wards.Last().Id + 1;
             _context.Wards.Add(ward);
+            _context.SaveChanges(); 
             return ward;
         }
 
         public void DeleteSingleWard(int id)
         {
-            int index = _context.Wards.FindIndex(w => w.Id == id);
-            _context.Wards.Remove(_context.Wards[index]);
+            var w = _context.Wards.Find(id);
+            _context.Wards.Remove(w);
+            _context.SaveChanges(); 
         }
 
         public List<Ward> GetAllWards()
         {
-            return _context.Wards;
+            return _context.Wards.ToList();
         }
 
         public Ward UpdateSingleWard(int id, Ward ward)
         {
-            int index = _context.Wards.FindIndex(w => w.Id == id);
-            _context.Wards[index].Name = ward.Name;
-            return _context.Wards[index];
+            var w = _context.Wards.Find(id);
+            if (w != null)
+            {
+                w.Name = ward.Name;
+                _context.SaveChanges(); // Save changes to the database
+            }
+            return w;
         }
     }
 }

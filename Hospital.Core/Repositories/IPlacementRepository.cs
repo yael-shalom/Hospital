@@ -9,9 +9,9 @@ namespace Hospital.Core.Repositories
     public interface IPlacementRepository
     {
         public List<Placement> GetAllPlacements();
-        public List<Placement> GetSinglePlacement(string id);
-        public Placement addSinglePlacement(Placement placement);
-        public Placement updateSinglePlacement(string id, Placement placement);
-        public void deleteSinglePlacement(string id);
+        public Placement? GetSinglePlacement(int id);
+        public Placement AddSinglePlacement(Placement placement);
+        public Placement UpdateSinglePlacement(int id, Placement placement);
+        public void DeleteSinglePlacement(int id);
     }
 }

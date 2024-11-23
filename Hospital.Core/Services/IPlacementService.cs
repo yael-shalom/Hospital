@@ -9,9 +9,9 @@ namespace Hospital.Core.Services
     public interface IPlacementService
     {
         public List<Placement> GetPlacementsList();
-        public List<Placement> GetPlacementById(string id);
-        public Placement addPlacement(Placement placement);
-        public Placement updatePlacement(string id, Placement placement);
-        public void deletePlacement(string id);
+        public Placement GetPlacementById(int id);
+        public Placement AddPlacement(Placement placement);
+        public Placement UpdatePlacement(int id, Placement placement);
+        public void DeletePlacement(int id);
     }
 }
