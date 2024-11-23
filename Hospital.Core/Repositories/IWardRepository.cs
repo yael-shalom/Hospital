@@ -10,7 +10,7 @@ namespace Hospital.Core.Repositories
     {
         public List<Ward> GetAllWards();
         public Ward AddSingleWard(Ward ward);
-        public Ward UpdateSingleWard(int id, Ward ward);
+        public Ward? UpdateSingleWard(int id, Ward ward);
         public void DeleteSingleWard(int id);
     }
 }

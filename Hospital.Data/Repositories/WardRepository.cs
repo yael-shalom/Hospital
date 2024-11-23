@@ -35,7 +35,7 @@ namespace Hospital.Data.Repositories
             return _context.Wards.ToList();
         }
 
-        public Ward UpdateSingleWard(int id, Ward ward)
+        public Ward? UpdateSingleWard(int id, Ward ward)
         {
             var w = _context.Wards.Find(id);
             if (w != null)

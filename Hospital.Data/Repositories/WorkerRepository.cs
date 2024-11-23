@@ -35,12 +35,12 @@ namespace Hospital.Data.Repositories
             return _context.Workers.ToList();
         }
 
-        public Worker GetSingleWorker(string id)
+        public Worker? GetSingleWorker(string id)
         {
             return _context.Workers.Find(id);
         }
 
-        public Worker UpdateSingleWorker(string id, Worker worker)
+        public Worker? UpdateSingleWorker(string id, Worker worker)
         {
             var w = _context.Workers.Find(id);
             if (w != null)
