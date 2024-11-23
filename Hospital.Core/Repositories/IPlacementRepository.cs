@@ -11,7 +11,7 @@ namespace Hospital.Core.Repositories
         public List<Placement> GetAllPlacements();
         public Placement? GetSinglePlacement(int id);
         public Placement AddSinglePlacement(Placement placement);
-        public Placement UpdateSinglePlacement(int id, Placement placement);
+        public Placement? UpdateSinglePlacement(int id, Placement placement);
         public void DeleteSinglePlacement(int id);
     }
 }
