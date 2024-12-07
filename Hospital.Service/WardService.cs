@@ -26,7 +26,7 @@ namespace Hospital.Service
             _WardRepository.DeleteSingleWard(id);
         }
 
-        public List<Ward> GetWardsList()
+        public IEnumerable<Ward> GetWardsList()
         {
             return _WardRepository.GetAllWards();
         }

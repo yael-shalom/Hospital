@@ -8,7 +8,7 @@ namespace Hospital.Core.Repositories
 {
     public interface IWardRepository
     {
-        public List<Ward> GetAllWards();
+        public IEnumerable<Ward> GetAllWards();
         public Ward AddSingleWard(Ward ward);
         public Ward? UpdateSingleWard(int id, Ward ward);
         public void DeleteSingleWard(int id);

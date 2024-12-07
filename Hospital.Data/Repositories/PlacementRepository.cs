@@ -16,9 +16,9 @@ namespace Hospital.Data.Repositories
             _context = context;
         }
 
-        public List<Placement> GetAllPlacements()
+        public IEnumerable<Placement> GetAllPlacements()
         {
-            return _context.Placements.ToList();
+            return _context.Placements;
         }
 
         public Placement? GetSinglePlacement(int id)

@@ -17,7 +17,7 @@ namespace Hospital.Service
             _PlacementRepository = placementRepository;
         }
 
-        public List<Placement> GetPlacementsList()
+        public IEnumerable<Placement> GetPlacementsList()
         {
             return _PlacementRepository.GetAllPlacements();
         }

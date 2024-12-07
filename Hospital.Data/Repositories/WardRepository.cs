@@ -30,9 +30,9 @@ namespace Hospital.Data.Repositories
             _context.SaveChanges(); 
         }
 
-        public List<Ward> GetAllWards()
+        public IEnumerable<Ward> GetAllWards()
         {
-            return _context.Wards.ToList();
+            return _context.Wards;
         }
 
         public Ward? UpdateSingleWard(int id, Ward ward)

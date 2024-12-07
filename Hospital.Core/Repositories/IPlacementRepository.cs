@@ -8,7 +8,7 @@ namespace Hospital.Core.Repositories
 {
     public interface IPlacementRepository
     {
-        public List<Placement> GetAllPlacements();
+        public IEnumerable<Placement> GetAllPlacements();
         public Placement? GetSinglePlacement(int id);
         public Placement AddSinglePlacement(Placement placement);
         public Placement? UpdateSinglePlacement(int id, Placement placement);

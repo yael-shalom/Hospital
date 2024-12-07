@@ -30,9 +30,9 @@ namespace Hospital.Data.Repositories
             _context.SaveChanges();
         }
 
-        public List<Worker> GetAllWorkers()
+        public IEnumerable<Worker> GetAllWorkers()
         {
-            return _context.Workers.ToList();
+            return _context.Workers;
         }
 
         public Worker? GetSingleWorker(string id)

@@ -8,7 +8,7 @@ namespace Hospital.Core.Services
 {
     public interface IPlacementService
     {
-        public List<Placement> GetPlacementsList();
+        public IEnumerable<Placement> GetPlacementsList();
         public Placement GetPlacementById(int id);
         public Placement AddPlacement(Placement placement);
         public Placement UpdatePlacement(int id, Placement placement);

@@ -8,7 +8,7 @@ namespace Hospital.Core.Repositories
 {
     public interface IWorkerRepository
     {
-        public List<Worker> GetAllWorkers();
+        public IEnumerable<Worker> GetAllWorkers();
         public Worker? GetSingleWorker(string id);
         public Worker AddSingleWorker(Worker worker);
         public Worker? UpdateSingleWorker(string id, Worker worker);

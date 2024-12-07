@@ -32,7 +32,7 @@ namespace Hospital.Service
             return _WorkerRepository.GetSingleWorker(id);
         }
 
-        public List<Worker> GetWorkersList()
+        public IEnumerable<Worker> GetWorkersList()
         {
             return _WorkerRepository.GetAllWorkers();
         }
