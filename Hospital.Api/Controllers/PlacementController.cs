@@ -1,4 +1,7 @@
-﻿using Hospital.Core.Services;
+﻿using AutoMapper;
+using Hospital.Api.Models;
+using Hospital.Core.DTOs;
+using Hospital.Core.Services;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -10,45 +13,55 @@ namespace Hospital.Controllers
     public class PlacementController : ControllerBase
     {
         private readonly IPlacementService _placementService;
+        private readonly IMapper _mapper;
 
-        public PlacementController(IPlacementService placementService)
+        public PlacementController(IPlacementService placementService, IMapper mapper)
         {
             _placementService = placementService;
+            _mapper = mapper;
         }
 
         // GET: api/<PlacementController>
         [HttpGet]
-        public ActionResult Get()
+        public async Task<ActionResult> Get()
         {
-            return Ok(_placementService.GetPlacementsList());
+            var placementsDto = _mapper.Map<IEnumerable<PlacementDto>>(await _placementService.GetPlacementsListAsync());
+            return Ok(placementsDto);
         }
 
         // GET api/<PlacementController>/5
         [HttpGet("{id}")]
         public ActionResult Get(int id)
         {
-            return Ok(_placementService.GetPlacementById(id));
+            var p = _placementService.GetPlacementById(id);
+            if (p == null)
+            {
+                return NotFound();
+            }
+            var placementDto = _mapper.Map<PlacementDto>(p);
+            return Ok(placementDto);
         }
 
         // POST api/<PlacementController>
         [HttpPost]
-        public ActionResult Post([FromBody] Placement placement)
+        public async Task<ActionResult> Post([FromBody] PlacementPostModel placement)
         {
-            return Ok(_placementService.AddPlacement(placement));
+            var p = new Placement { WorkerId =  placement.WorkerId, Day = placement.Day, Morning = placement.Morning, Evening = placement.Evening, Night = placement.Night, WardId = placement.WardId};
+            return Ok(await _placementService.AddPlacementAsync(p));
         }
 
         // PUT api/<PlacementController>/5
         [HttpPut("{id}")]
-        public ActionResult Put(int id, [FromBody] Placement placement)
+        public async Task<ActionResult> Put(int id, [FromBody] Placement placement)
         {
-            return Ok(_placementService.UpdatePlacement(id, placement));
+            return Ok(await _placementService.UpdatePlacementAsync(id, placement));
         }
 
         // DELETE api/<PlacementController>/5
         [HttpDelete("{id}")]
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
-            _placementService.DeletePlacement(id);
+            await _placementService.DeletePlacementAsync(id);
             return Ok();
         }
     }

@@ -8,10 +8,10 @@ namespace Hospital.Core.Services
 {
     public interface IPlacementService
     {
-        public IEnumerable<Placement> GetPlacementsList();
+        public Task<IEnumerable<Placement>> GetPlacementsListAsync();
         public Placement GetPlacementById(int id);
-        public Placement AddPlacement(Placement placement);
-        public Placement UpdatePlacement(int id, Placement placement);
-        public void DeletePlacement(int id);
+        public Task<Placement> AddPlacementAsync(Placement placement);
+        public Task<Placement?> UpdatePlacementAsync(int id, Placement placement);
+        public Task DeletePlacementAsync(int id);
     }
 }

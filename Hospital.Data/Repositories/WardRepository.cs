@@ -1,4 +1,5 @@
 ﻿using Hospital.Core.Repositories;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,32 +17,32 @@ namespace Hospital.Data.Repositories
             _context = context;
         }
 
-        public Ward AddSingleWard(Ward ward)
+        public async Task<Ward> AddSingleWardAsync(Ward ward)
         {
             _context.Wards.Add(ward);
-            _context.SaveChanges(); 
+            await _context.SaveChangesAsync(); 
             return ward;
         }
 
-        public void DeleteSingleWard(int id)
+        public async Task DeleteSingleWardAsync(int id)
         {
             var w = _context.Wards.Find(id);
             _context.Wards.Remove(w);
-            _context.SaveChanges(); 
+            await _context.SaveChangesAsync(); 
         }
 
-        public IEnumerable<Ward> GetAllWards()
+        public async Task<IEnumerable<Ward>> GetAllWardsAsync()
         {
-            return _context.Wards;
+            return await _context.Wards.ToListAsync();
         }
 
-        public Ward? UpdateSingleWard(int id, Ward ward)
+        public async Task<Ward?> UpdateSingleWardAsync(int id, Ward ward)
         {
             var w = _context.Wards.Find(id);
             if (w != null)
             {
                 w.Name = ward.Name;
-                _context.SaveChanges(); // Save changes to the database
+                await _context.SaveChangesAsync(); // Save changes to the database
             }
             return w;
         }

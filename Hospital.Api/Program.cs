@@ -1,3 +1,4 @@
+using Hospital.Core;
 using Hospital.Core.Repositories;
 using Hospital.Core.Services;
 using Hospital.Data;
@@ -23,6 +24,8 @@ builder.Services.AddScoped<IWorkerRepository, WorkerRepository>();
 builder.Services.AddScoped<IWorkerService, WorkerService>();
 
 builder.Services.AddSingleton<DataContext>();
+
+builder.Services.AddAutoMapper(typeof(MappingProfile));
 
 var app = builder.Build();
 

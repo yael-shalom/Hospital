@@ -17,19 +17,19 @@ namespace Hospital.Service
             _PlacementRepository = placementRepository;
         }
 
-        public IEnumerable<Placement> GetPlacementsList()
+        public async Task<IEnumerable<Placement>> GetPlacementsListAsync()
         {
-            return _PlacementRepository.GetAllPlacements();
+            return await _PlacementRepository.GetAllPlacementsAsync();
         }
 
-        public Placement AddPlacement(Placement placement)
+        public async Task<Placement> AddPlacementAsync(Placement placement)
         {
-            return _PlacementRepository.AddSinglePlacement(placement);
+            return await _PlacementRepository.AddSinglePlacementAsync(placement);
         }
 
-        public void DeletePlacement(int id)
+        public async Task DeletePlacementAsync(int id)
         {
-            _PlacementRepository.DeleteSinglePlacement(id);
+            await _PlacementRepository.DeleteSinglePlacementAsync(id);
         }
 
         public Placement? GetPlacementById(int id)
@@ -37,9 +37,9 @@ namespace Hospital.Service
             return _PlacementRepository.GetSinglePlacement(id);
         }
 
-        public Placement UpdatePlacement(int id, Placement placement)
+        public async Task<Placement?> UpdatePlacementAsync(int id, Placement placement)
         {
-            return _PlacementRepository.UpdateSinglePlacement(id, placement);
+            return await _PlacementRepository.UpdateSinglePlacementAsync(id, placement);
         }
     }
 }

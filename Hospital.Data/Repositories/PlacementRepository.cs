@@ -1,4 +1,5 @@
 ﻿using Hospital.Core.Repositories;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,9 +17,9 @@ namespace Hospital.Data.Repositories
             _context = context;
         }
 
-        public IEnumerable<Placement> GetAllPlacements()
+        public async Task<IEnumerable<Placement>> GetAllPlacementsAsync()
         {
-            return _context.Placements;
+            return await _context.Placements.ToListAsync();
         }
 
         public Placement? GetSinglePlacement(int id)
@@ -26,14 +27,14 @@ namespace Hospital.Data.Repositories
             return _context.Placements.Find(id);
         }
 
-        public Placement AddSinglePlacement(Placement placement)
+        public async Task<Placement> AddSinglePlacementAsync(Placement placement)
         {
             _context.Placements.Add(placement);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             return placement;
         }
 
-        public Placement? UpdateSinglePlacement(int id, Placement placement)
+        public async Task<Placement?> UpdateSinglePlacementAsync(int id, Placement placement)
         {
             var p = _context.Placements.Find(id);
 
@@ -46,19 +47,19 @@ namespace Hospital.Data.Repositories
                 p.WardId = placement.WardId;
                 p.WorkerId = placement.WorkerId;
 
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
             }
             return p;
         }
 
-        public void DeleteSinglePlacement(int id)
+        public async Task DeleteSinglePlacementAsync(int id)
         {
             var p = _context.Placements.Find(id);
 
             if (p != null)
             {
                 _context.Placements.Remove(p);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
             }
         }
 

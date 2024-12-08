@@ -17,14 +17,14 @@ namespace Hospital.Service
             _WorkerRepository = workerRepository;
         }
 
-        public Worker AddWorker(Worker worker)
+        public async Task<Worker> AddWorkerAsync(Worker worker)
         {
-            return _WorkerRepository.AddSingleWorker(worker);
+            return await _WorkerRepository.AddSingleWorkerAsync(worker);
         }
 
-        public void DeleteWorker(string id)
+        public async Task DeleteWorkerAsync(string id)
         {
-            _WorkerRepository.DeleteSingleWorker(id);
+            await _WorkerRepository.DeleteSingleWorkerAsync(id);
         }
 
         public Worker GetWorkerById(string id)
@@ -32,14 +32,14 @@ namespace Hospital.Service
             return _WorkerRepository.GetSingleWorker(id);
         }
 
-        public IEnumerable<Worker> GetWorkersList()
+        public async Task<IEnumerable<Worker>> GetWorkersListAsync()
         {
-            return _WorkerRepository.GetAllWorkers();
+            return await _WorkerRepository.GetAllWorkersAsync();
         }
 
-        public Worker UpdateWorker(string id, Worker worker)
+        public async Task<Worker?> UpdateWorkerAsync(string id, Worker worker)
         {
-            return _WorkerRepository.UpdateSingleWorker(id, worker);
+            return await _WorkerRepository.UpdateSingleWorkerAsync(id, worker);
         }
     }
 }

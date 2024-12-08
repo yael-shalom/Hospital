@@ -18,9 +18,9 @@ namespace Hospital
 
         // GET: api/<Worker>
         [HttpGet]
-        public ActionResult Get()
+        public async Task<ActionResult> Get()
         {
-            return Ok(_workerService.GetWorkersList());
+            return Ok(await _workerService.GetWorkersListAsync());
         }
 
         // GET api/<Worker>/5
@@ -32,23 +32,23 @@ namespace Hospital
 
         // POST api/<Worker>
         [HttpPost]
-        public ActionResult Post([FromBody] Worker worker)
+        public async Task<ActionResult> Post([FromBody] Worker worker)
         {
-            return Ok(_workerService.AddWorker(worker));
+            return Ok(await _workerService.AddWorkerAsync(worker));
         }
 
         // PUT api/<Worker>/5
         [HttpPut("{id}")]
-        public ActionResult Put(string id, [FromBody] Worker worker)
+        public async Task<ActionResult> Put(string id, [FromBody] Worker worker)
         {
-            return Ok(_workerService.UpdateWorker(id,worker));
+            return Ok(await _workerService.UpdateWorkerAsync(id,worker));
         }
 
         // DELETE api/<Worker>/5
         [HttpDelete("{id}")]
-        public ActionResult Delete(string id)
+        public async Task<ActionResult> Delete(string id)
         {
-            _workerService.DeleteWorker(id);
+            await _workerService.DeleteWorkerAsync(id);
             return Ok();
         }
     }

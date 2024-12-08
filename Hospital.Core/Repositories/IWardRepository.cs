@@ -8,9 +8,9 @@ namespace Hospital.Core.Repositories
 {
     public interface IWardRepository
     {
-        public IEnumerable<Ward> GetAllWards();
-        public Ward AddSingleWard(Ward ward);
-        public Ward? UpdateSingleWard(int id, Ward ward);
-        public void DeleteSingleWard(int id);
+        public Task<IEnumerable<Ward>> GetAllWardsAsync();
+        public Task<Ward> AddSingleWardAsync(Ward ward);
+        public Task<Ward?> UpdateSingleWardAsync(int id, Ward ward);
+        public Task DeleteSingleWardAsync(int id);
     }
 }

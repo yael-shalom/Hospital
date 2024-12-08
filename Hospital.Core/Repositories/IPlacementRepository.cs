@@ -8,10 +8,10 @@ namespace Hospital.Core.Repositories
 {
     public interface IPlacementRepository
     {
-        public IEnumerable<Placement> GetAllPlacements();
+        public Task<IEnumerable<Placement>> GetAllPlacementsAsync();
         public Placement? GetSinglePlacement(int id);
-        public Placement AddSinglePlacement(Placement placement);
-        public Placement? UpdateSinglePlacement(int id, Placement placement);
-        public void DeleteSinglePlacement(int id);
+        public Task<Placement> AddSinglePlacementAsync(Placement placement);
+        public Task<Placement?> UpdateSinglePlacementAsync(int id, Placement placement);
+        public Task DeleteSinglePlacementAsync(int id);
     }
 }

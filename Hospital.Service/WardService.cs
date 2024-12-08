@@ -16,24 +16,24 @@ namespace Hospital.Service
             _WardRepository = wardRepository;
         }
 
-        public Ward AddWard(Ward ward)
+        public async Task<Ward> AddWardAsync(Ward ward)
         {
-            return _WardRepository.AddSingleWard(ward);
+            return await _WardRepository.AddSingleWardAsync(ward);
         }
 
-        public void DeleteWard(int id)
+        public async Task DeleteWardAsync(int id)
         {
-            _WardRepository.DeleteSingleWard(id);
+            await _WardRepository.DeleteSingleWardAsync(id);
         }
 
-        public IEnumerable<Ward> GetWardsList()
+        public async Task<IEnumerable<Ward>> GetWardsListAsync()
         {
-            return _WardRepository.GetAllWards();
+            return await _WardRepository.GetAllWardsAsync();
         }
 
-        public Ward UpdateWard(int id, Ward ward)
+        public async Task<Ward?> UpdateWardAsync(int id, Ward ward)
         {
-            return _WardRepository.UpdateSingleWard(id, ward);
+            return await _WardRepository.UpdateSingleWardAsync(id, ward);
         }
     }
 }

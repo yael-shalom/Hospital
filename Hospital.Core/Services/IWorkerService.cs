@@ -8,10 +8,10 @@ namespace Hospital.Core.Services
 {
     public interface IWorkerService
     {
-        public IEnumerable<Worker> GetWorkersList();
+        public Task<IEnumerable<Worker>> GetWorkersListAsync();
         public Worker GetWorkerById(string id);
-        public Worker AddWorker(Worker worker);
-        public Worker UpdateWorker(string id, Worker worker);
-        public void DeleteWorker(string id);
+        public Task<Worker> AddWorkerAsync(Worker worker);
+        public Task<Worker?> UpdateWorkerAsync(string id, Worker worker);
+        public Task DeleteWorkerAsync(string id);
     }
 }

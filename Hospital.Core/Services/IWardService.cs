@@ -8,9 +8,9 @@ namespace Hospital.Core.Services
 {
     public interface IWardService
     {
-        public IEnumerable<Ward> GetWardsList();
-        public Ward AddWard(Ward ward);
-        public Ward UpdateWard(int id, Ward ward);
-        public void DeleteWard(int id);
+        public Task<IEnumerable<Ward>> GetWardsListAsync();
+        public Task<Ward> AddWardAsync(Ward ward);
+        public Task<Ward?> UpdateWardAsync(int id, Ward ward);
+        public Task DeleteWardAsync(int id);
     }
 }

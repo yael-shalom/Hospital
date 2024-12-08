@@ -1,4 +1,5 @@
 ﻿using Hospital.Core.Repositories;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,23 +17,23 @@ namespace Hospital.Data.Repositories
             _context = context;
         }
 
-        public Worker AddSingleWorker(Worker worker)
+        public async Task<Worker> AddSingleWorkerAsync(Worker worker)
         {
             _context.Workers.Add(worker);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             return worker;
         }
 
-        public void DeleteSingleWorker(string id)
+        public async Task DeleteSingleWorkerAsync(string id)
         {
             var w = _context.Workers.Find(id);
             _context.Workers.Remove(w);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public IEnumerable<Worker> GetAllWorkers()
+        public async Task<IEnumerable<Worker>> GetAllWorkersAsync()
         {
-            return _context.Workers;
+            return await _context.Workers.ToListAsync();
         }
 
         public Worker? GetSingleWorker(string id)
@@ -40,7 +41,7 @@ namespace Hospital.Data.Repositories
             return _context.Workers.Find(id);
         }
 
-        public Worker? UpdateSingleWorker(string id, Worker worker)
+        public async Task<Worker?> UpdateSingleWorkerAsync(string id, Worker worker)
         {
             var w = _context.Workers.Find(id);
             if (w != null)
@@ -48,7 +49,7 @@ namespace Hospital.Data.Repositories
                 w.Name = worker.Name;
                 w.Role = worker.Role;
 
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
             }
             return w;
         }
