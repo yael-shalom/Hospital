@@ -1,4 +1,5 @@
-﻿using Hospital.Core.Services;
+﻿using Hospital.Api.Models;
+using Hospital.Core.Services;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -25,9 +26,9 @@ namespace Hospital.Controllers
 
         // POST api/<WardController>
         [HttpPost]
-        public ActionResult Post([FromBody] Ward ward)
+        public ActionResult Post([FromBody] WardPostModel ward)
         {
-            return Ok(_wardService.AddWard(ward));
+            return Ok(_wardService.AddWard(new Ward { Name = ward.Name}));
         }
 
         // PUT api/<WardController>/5
