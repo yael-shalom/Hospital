@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,9 +14,15 @@ namespace Hospital.Data
         public DbSet<Ward> Wards { get; set; }
         public DbSet<Worker> Workers { get; set; }
 
+        private readonly IConfiguration _configuration;
+
+        public DataContext(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=HospitalDB");
+            optionsBuilder.UseSqlServer(_configuration["ConnectionString"]);
         }
     }
 }

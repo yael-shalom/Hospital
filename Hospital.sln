@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35013.160
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hospital.Api", "Hospital.Api\Hospital.Api.csproj", "{8AB29FC1-4C16-4C4D-82CD-4532CB22D9D3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hospital.Api", "Hospital.Api\Hospital.Api.csproj", "{8AB29FC1-4C16-4C4D-82CD-4532CB22D9D3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hospital.Core", "Hospital.Core\Hospital.Core.csproj", "{3006A2CA-B47D-4E2D-A437-F79F3152647F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hospital.Core", "Hospital.Core\Hospital.Core.csproj", "{3006A2CA-B47D-4E2D-A437-F79F3152647F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hospital.Data", "Hospital.Data\Hospital.Data.csproj", "{75D0E31B-8D36-45E5-BA18-23AA46920DAB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hospital.Data", "Hospital.Data\Hospital.Data.csproj", "{75D0E31B-8D36-45E5-BA18-23AA46920DAB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hospital.Service", "Hospital.Service\Hospital.Service.csproj", "{0179A1F9-96B9-4AD2-9862-109D6D363463}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hospital.Service", "Hospital.Service\Hospital.Service.csproj", "{0179A1F9-96B9-4AD2-9862-109D6D363463}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

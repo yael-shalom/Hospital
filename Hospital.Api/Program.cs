@@ -1,3 +1,4 @@
+using Hospital.Api.Middlewares;
 using Hospital.Core;
 using Hospital.Core.Repositories;
 using Hospital.Core.Services;
@@ -39,6 +40,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseMiddleware<ShabbatMiddleware>();
 
 app.MapControllers();
 
