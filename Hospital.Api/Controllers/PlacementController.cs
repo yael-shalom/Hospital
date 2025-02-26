@@ -2,6 +2,7 @@
 using Hospital.Api.Models;
 using Hospital.Core.DTOs;
 using Hospital.Core.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -10,6 +11,8 @@ namespace Hospital.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "manager")]
+
     public class PlacementController : ControllerBase
     {
         private readonly IPlacementService _placementService;
@@ -42,6 +45,14 @@ namespace Hospital.Controllers
             return Ok(placementDto);
         }
 
+        /// ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // GET api/<PlacementController>/5
+        //[HttpGet("{id}")]
+        //public ActionResult Get(string id)
+        //{
+        //    return Ok();
+        //}
+
         // POST api/<PlacementController>
         [HttpPost]
         public async Task<ActionResult> Post([FromBody] PlacementPostModel placement)
@@ -59,6 +70,7 @@ namespace Hospital.Controllers
 
         // DELETE api/<PlacementController>/5
         [HttpDelete("{id}")]
+        [Authorize]
         public async Task<ActionResult> Delete(int id)
         {
             await _placementService.DeletePlacementAsync(id);

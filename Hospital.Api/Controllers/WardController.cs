@@ -1,5 +1,6 @@
 ﻿using Hospital.Api.Models;
 using Hospital.Core.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -8,6 +9,7 @@ namespace Hospital.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "manager")]
     public class WardController : ControllerBase
     {
         private readonly IWardService _wardService;
@@ -19,6 +21,7 @@ namespace Hospital.Controllers
 
         // GET: api/<WardController>
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult> Get()
         {
             return Ok(await _wardService.GetWardsListAsync());
@@ -33,13 +36,14 @@ namespace Hospital.Controllers
 
         // PUT api/<WardController>/5
         [HttpPut("{id}")]
-        public async Task<ActionResult> Put(int id, [FromBody] Ward ward)
+        public async Task<ActionResult> Put(int id, [FromBody] WardPostModel ward)
         {
-            return Ok(await _wardService.UpdateWardAsync(id, ward));
+            return Ok(await _wardService.UpdateWardAsync(id, new Ward { Id = id, Name = ward.Name}));
         }
 
         // DELETE api/<WardController>/5
         [HttpDelete("{id}")]
+        [Authorize]
         public async Task<ActionResult> Delete(int id)
         {
             await _wardService.DeleteWardAsync(id);

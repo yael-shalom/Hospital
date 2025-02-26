@@ -19,8 +19,11 @@ namespace Hospital.Data.Repositories
 
         public async Task<Worker> AddSingleWorkerAsync(Worker worker)
         {
-            _context.Workers.Add(worker);
-            await _context.SaveChangesAsync();
+            var w = _context.Workers.Add(worker);
+            if (w != null)
+            {
+                await _context.SaveChangesAsync();
+            }
             return worker;
         }
 
@@ -49,7 +52,10 @@ namespace Hospital.Data.Repositories
                 w.Name = worker.Name;
                 w.Role = worker.Role;
 
-                await _context.SaveChangesAsync();
+                var wrkr = _context.Workers.FirstOrDefault(w => (w.UserName.Equals(worker.UserName) && w.Password.Equals(worker.Password)));//בדיקה שם המשתמש-סיסמא לא קיים
+                if (wrkr == null)
+                    await _context.SaveChangesAsync();
+                else return null;
             }
             return w;
         }
